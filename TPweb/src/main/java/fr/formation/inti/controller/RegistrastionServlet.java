@@ -59,7 +59,7 @@ public class RegistrastionServlet extends HttpServlet {
 //		u.setRoleName(roleName);
 		User u = new User(roleName, email, password, firstName, lastName, new GregorianCalendar().getTime());
 		userService.save(u);
-		response.sendRedirect("/login.jsp");
+		response.sendRedirect("/TPweb/login.jsp");
 
 	}
 

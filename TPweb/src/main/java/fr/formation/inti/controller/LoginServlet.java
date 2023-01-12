@@ -36,8 +36,7 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
 	}
 
 	/**
@@ -58,7 +57,7 @@ public class LoginServlet extends HttpServlet {
 			session.setMaxInactiveInterval(1800); // 1800 seconds
 			request.getServletContext().getRequestDispatcher("/session").forward(request, response);
 		}else {
-			RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/login.jsp");
 			out.println("<font color=red>email ou mot de passe incorrect !.</font>");
 			rd.include(request, response);
 		} 

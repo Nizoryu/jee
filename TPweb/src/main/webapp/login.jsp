@@ -14,14 +14,13 @@
 <body class="bg-light ">
 
 	<form action="login" method="post">
-	<!-- Section: Design Block -->
-			<section class="text-center">
-				<!-- Background image -->
-				<div class="p-5 bg-image"
-					style="background-image: url('https://mdbootstrap.com/img/new/textures/full/171.jpg'); height: 300px;"></div>
-				<!-- Background image -->
+		<!-- Section: Design Block -->
+		<section class="text-center">
+			<!-- Background image -->
+			<div class="p-5 bg-image"
+				style="background-image: url('https://mdbootstrap.com/img/new/textures/full/171.jpg'); height: 300px;"></div>
 
-<div class="container">
+			<div class="container">
 				<div class="card mx-4 mx-md-5  shadow-5-strong"
 					style="margin-top: -100px; background: hsla(0, 0%, 100%, 0.8); backdrop-filter: blur(30px);">
 					<div class="card-body py-5 px-md-5">
@@ -57,9 +56,9 @@
 						</div>
 					</div>
 				</div>
-				</div>
-			</section>
-	
+			</div>
+		</section>
+
 	</form>
 </body>
 </html>

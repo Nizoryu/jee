@@ -55,14 +55,14 @@ public class RegistrastionEmpServlet extends HttpServlet {
 		String firstName = request.getParameter("firstName");
 		String startdate = request.getParameter("startdate");
 		
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date startdate_conv;
 		
 		try {
 			startdate_conv = simpleDateFormat.parse(startdate);    //convertion du string en date
 			Employee e = new Employee(firstName, lastName, startdate_conv, title);
 			empService.save(e);
-			response.sendRedirect("/TPweb/listemp.jsp");
+			response.sendRedirect("/TPweb/list");
 		} catch (ParseException e1) {		
 			e1.printStackTrace();
 		}
