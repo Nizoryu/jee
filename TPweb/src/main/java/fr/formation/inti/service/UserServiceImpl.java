@@ -69,5 +69,13 @@ public class UserServiceImpl implements UserService{
 		dao.commit(true);
 		return user;
 	}
+
+	@Override
+	public User findByUniqueEmail(String email) {
+		dao.beginTransaction();
+		User user = dao.findByUniqueEmail(email);
+		dao.commit(true);
+		return user;
+	}
 	
 }

@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.formation.inti.entity.User;
 import fr.formation.inti.service.UserService;
@@ -35,6 +36,13 @@ public class RegistrastionServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		HttpSession session = request.getSession(false);
+		if (session != null && session.getAttribute("user") !=null) {			
+			getServletContext().getRequestDispatcher("/WEB-INF/view/addUser.html").forward(request, response);
+		} 	else {	
+			request.getServletContext().getRequestDispatcher("/WEB-INF/views/pasbien.html").forward(request, response);
+		}
 		getServletContext().getRequestDispatcher("/WEB-INF/view/addUser.html").forward(request, response);
 	}
 
@@ -43,16 +51,31 @@ public class RegistrastionServlet extends HttpServlet {
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+			throws ServletException, IOException {	
+		response.setContentType("text/html");
 		String roleName = request.getParameter("roleName");
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		String lastName = request.getParameter("lastName");
 		String firstName = request.getParameter("firstName");
 		
-		User u = new User(roleName, email, password, firstName, lastName, new GregorianCalendar().getTime());
-		userService.save(u);
-		response.sendRedirect("/TPweb/login.jsp");
+		PrintWriter out = response.getWriter();
+		User user = userService.findByUniqueEmail(email);
+		if(user != null) {  //si la méthode trouve un user avec le même email inscrit
+			RequestDispatcher rd = request.getRequestDispatcher("/registre"); 
+			out.println("<font color=red>email déjà utilisé </font>");
+			
+		}else { //si la méthode ne trouve pas d'email dans la bdd
+			User u = new User(roleName, email, password, firstName, lastName, new GregorianCalendar().getTime());
+			userService.save(u);
+			response.sendRedirect("/TPweb/login.jsp");
+			
+		}
+		
+		
+//		User u = new User(roleName, email, password, firstName, lastName, new GregorianCalendar().getTime());
+//		userService.save(u);
+//		response.sendRedirect("/TPweb/login.jsp");
 
 	
 

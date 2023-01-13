@@ -85,5 +85,7 @@
 
 
 </body>
-</body>
+
+<%@ include file="/../std/footer.html"%>
+
 </html>

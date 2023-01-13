@@ -49,7 +49,7 @@ public class LoginServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
-		User user = userService.findByEmail(email, password);	
+		User user = userService.findByEmail(email, password);
 		
 		if(user != null) {
 			HttpSession session = request.getSession();

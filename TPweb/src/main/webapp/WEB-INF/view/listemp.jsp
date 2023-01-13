@@ -27,7 +27,7 @@
 	<div class="p-5 bg-image"
 		style="background-image: url('https://mdbootstrap.com/img/new/textures/full/171.jpg'); height: 300px;"></div>
 	<div class="container">
-		<div class="card mx-4 mx-md-5 shadow-5-strong "
+		<div class="card mx-4 mx-md-5 shadow-5-strong mb-5"
 			style="margin-top: -100px; background: hsla(0, 0%, 100%, 0.8); backdrop-filter: blur(30px);">
 			<div class="card-body py-5 px-md-5">
 
@@ -36,8 +36,9 @@
 						<h2 class="fw-bold mb-2">Liste employee</h2>
 						<div align="center">
 							<a class="btn btn-primary m-4" href="/TPweb/list" role="button">Actualiser
-								la liste</a> <a class="btn btn-primary m-4" href="/TPweb/registreemp"
-								role="button">Enregistrer un employee</a>
+								la liste</a> <a class="btn btn-primary m-4"
+								href="/TPweb/registreemp" role="button">Enregistrer un
+								employee</a>
 						</div>
 						<table class="table table-striped table-hover"
 							data-page-list="[10, 25, 50, 100, all]" data-pagination="true"
@@ -49,7 +50,13 @@
 									<th>lastName</th>
 									<th>title</th>
 									<th>startDate</th>
-									<th>Modification</th>
+									<c:choose>
+										<c:when test="${user.roleName == 'ADMIN'}">
+											<th>Modification</th>
+										</c:when>
+										</c:choose>
+									
+
 								</tr>
 							</thead>
 							<tbody>
@@ -60,14 +67,21 @@
 										<td>${emp.lastName }</td>
 										<td>${emp.title }</td>
 										<td>${emp.startDate}</td>
-										<td style="text-align: center"><a
-											href="update?id=<c:out value="${emp.empId}"></c:out>"
-											name="id" id="id" class="edit" data-toggle="modal"><i
-												class="bi bi-pencil-square"></i></a> <a
-											href="delete?id=<c:out value="${emp.empId}"></c:out>"
-											class="delete" data-toggle="modal"><i
-												class="bi bi-x-square-fill"></i></a> <input type="hidden"
-											name="id" id="id"></td>
+										<c:choose>
+										<c:when test="${user.roleName == 'ADMIN'}">
+										<td style="text-align: center">
+												
+													<a href="update?id=<c:out value="${emp.empId}"></c:out>"
+														id="id" class="edit" data-toggle="modal"><i
+														class="bi bi-pencil-square"></i></a>
+													<a href="delete?id=<c:out value="${emp.empId}"></c:out>"
+														class="delete" data-toggle="modal"><i
+														class="bi bi-x-square-fill"></i></a>
+													<input type="hidden" name="id" id="id">
+											</td>
+												</c:when>
+		
+											</c:choose>
 
 									</tr>
 								</c:forEach>
@@ -79,9 +93,8 @@
 			</div>
 		</div>
 	</div>
-	
-
-
 
 </body>
+<%@ include file="/../std/footer.html"%>
+
 </html>

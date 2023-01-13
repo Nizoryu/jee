@@ -27,9 +27,10 @@
 
 					<div class="row d-flex justify-content-center">
 						<div class="col">
-							<h2 class="fw-bold mb-5">Bienvenue ${user.firstName}</h2>
+							<%--  <h2 class="fw-bold mb-5">Bienvenue ${user.firstName}</h2>
 							<a class="btn btn-primary m-4" href="/TPweb/list" role="button">Liste
-								des utilisateurs</a>
+								des utilisateurs</a> --%>
+							<h2 class="fw-bold mb-5">Vous n'etes plus connecté sur le site</h2>
 						</div>
 					</div>
 				</div>
@@ -37,4 +38,5 @@
 		</div>
 	</section>
 </body>
+<%@ include file="/../std/footer.html"%>
 </html>

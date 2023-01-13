@@ -84,4 +84,5 @@
 
 	</form>
 </body>
+<%@ include file="/../std/footer.html"%>
 </html>

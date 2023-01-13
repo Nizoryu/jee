@@ -37,7 +37,8 @@ public class InfoSessionController extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		if(session != null) {
 			
-			getServletContext().getRequestDispatcher("/WEB-INF/view/main.jsp").forward(request, response);
+
+			request.getServletContext().getRequestDispatcher("/list").forward(request, response);
 		}else {
 			response.sendRedirect(request.getContextPath()+"/login.jsp");
 		}

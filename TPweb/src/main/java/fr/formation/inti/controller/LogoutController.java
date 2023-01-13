@@ -28,10 +28,12 @@ public class LogoutController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
-		if(session != null) {
+		if(session != null && session.getAttribute("user") !=null) {
 			session.invalidate();
 		}
-		response.sendRedirect(request.getContextPath());
+//		response.sendRedirect(request.getContextPath());
+//		getServletContext().getRequestDispatcher("/WEB-INF/view/main.jsp");
+		response.sendRedirect(request.getContextPath()+"/login.jsp");
 	}
 
 	/**

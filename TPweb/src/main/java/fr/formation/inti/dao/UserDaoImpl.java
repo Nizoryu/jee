@@ -29,7 +29,25 @@ public class UserDaoImpl extends GenericDaoImpl<User, Integer> implements UserDa
 		// get an user object
 		String hql = "FROM User where email =:email and password =:password";
 		Query query = getSession().createQuery(hql).setParameter("email", email).setParameter("password", password);
-		user = (User) query.getSingleResult();
+		user = (User) query.uniqueResult();
+//		user = (User) query.getSingleResult();
+		return user;
+	}
+
+//	public static void main(String[] args) {
+//		UserDaoImpl userdao = new UserDaoImpl();
+//		userdao.beginTransaction();
+//		User user = userdao.findByEmail("root@gmail.com", "123456");
+//		System.out.println(user);
+//		userdao.commit(true);
+//	}
+	@Override
+	public User findByUniqueEmail(String email) {
+		User user = null;
+		// get an user object
+		String hql = "FROM User where email =:email";
+		Query query = getSession().createQuery(hql).setParameter("email", email);
+		user = (User) query.uniqueResult();
 		return user;
 	}
 }

@@ -32,14 +32,14 @@
 									<!-- Email input -->
 									<div class="form-outline mb-4">
 										<input type="email" name="email" id="form3Example3"
-											class="form-control" placeholder="Email" /> <label
+											class="form-control" placeholder="Email" required /> <label
 											class="form-label" for="form3Example3"> </label>
 									</div>
 
 									<!-- Password input -->
 									<div class="form-outline mb-4">
 										<input type="password" name="password" id="form3Example4"
-											class="form-control" placeholder="Password" /> <label
+											class="form-control" placeholder="Password" required /> <label
 											class="form-label" for="form3Example4"></label>
 									</div>
 

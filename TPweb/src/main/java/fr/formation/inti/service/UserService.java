@@ -18,4 +18,6 @@ public interface UserService {
 	boolean validate(String email, String password);
 	
 	User findByEmail(String email,String password);
+	
+	User findByUniqueEmail(String email);
 }

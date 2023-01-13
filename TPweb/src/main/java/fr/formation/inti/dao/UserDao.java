@@ -6,4 +6,5 @@ public interface UserDao extends GenericDao<User, Integer> {
 	
 	boolean validate(String email, String password);
 	public User findByEmail(String email,String password);
+	public User findByUniqueEmail(String email);
 }

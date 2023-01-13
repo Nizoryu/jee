@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.formation.inti.entity.Employee;
 import fr.formation.inti.service.EmployeeService;
@@ -32,13 +33,26 @@ public class ListEmployeeController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<Employee> list = empService.findAll();
-		request.setAttribute("employees", list);
-		getServletContext().getRequestDispatcher("/WEB-INF/view/listemp.jsp").forward(request, response);
+		HttpSession session = request.getSession(false);
+		if (session != null && session.getAttribute("user") !=null) {
+				
+				List<Employee> list = empService.findAll();
+				request.setAttribute("employees", list);
+				getServletContext().getRequestDispatcher("/WEB-INF/view/listemp.jsp").forward(request, response);
+	
+		
+		} 	else {	
+			request.getServletContext().getRequestDispatcher("/WEB-INF/views/pasbien.html").forward(request, response);
+		}
+		}
+
 		
 		
+	//	List<Employee> list = empService.findAll();
+	//	request.setAttribute("employees", list);
+	//	getServletContext().getRequestDispatcher("/WEB-INF/view/listemp.jsp").forward(request, response);
 		
-	}
+
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

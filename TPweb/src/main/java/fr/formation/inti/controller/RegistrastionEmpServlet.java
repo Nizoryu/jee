@@ -5,12 +5,14 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.formation.inti.entity.Employee;
 import fr.formation.inti.entity.User;
@@ -40,7 +42,13 @@ public class RegistrastionEmpServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		getServletContext().getRequestDispatcher("/WEB-INF/view/addemp.jsp").forward(request, response);
+		
+		HttpSession session = request.getSession(false);
+		if (session != null && session.getAttribute("user") !=null) {			
+			getServletContext().getRequestDispatcher("/WEB-INF/view/addemp.jsp").forward(request, response);
+		} 	else {	
+			request.getServletContext().getRequestDispatcher("/WEB-INF/views/pasbien.html").forward(request, response);
+		}
 	}
 
 	/**
