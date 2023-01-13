@@ -25,7 +25,7 @@
 					style="margin-top: -100px; background: hsla(0, 0%, 100%, 0.8); backdrop-filter: blur(30px);">
 					<div class="card-body py-5 px-md-5">
 
-						<div class="row d-flex justify-content-center">
+						<div class="row d-flex justify-content-center ">
 							<div class="col">
 								<h2 class="fw-bold mb-5">Connection</h2>
 								<form>
@@ -50,7 +50,7 @@
 
 
 								</form>
-								<a class="  m-4" href="/TPweb/addUser.html" role="button">Ajouter
+								<a class="m-4" href="/TPweb/registre" role="button">Ajouter
 									un utilisateur</a>
 							</div>
 						</div>

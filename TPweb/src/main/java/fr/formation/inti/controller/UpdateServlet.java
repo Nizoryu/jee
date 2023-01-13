@@ -37,7 +37,7 @@ public class UpdateServlet extends HttpServlet {
 		Integer idEmp = Integer.parseInt(id);
 		Employee emp = empService.findById(idEmp);
 		request.setAttribute("emp", emp);
-		request.getServletContext().getRequestDispatcher("/update.jsp").forward(request, response);
+		request.getServletContext().getRequestDispatcher("/WEB-INF/view/update.jsp").forward(request, response);
 	}
 
 	/**
@@ -63,6 +63,7 @@ public class UpdateServlet extends HttpServlet {
 		} catch (ParseException e1) {		
 			e1.printStackTrace();
 		}
+		request.getServletContext().getRequestDispatcher("/list");
 	}
 
 }

@@ -1,8 +1,10 @@
 package fr.formation.inti.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.GregorianCalendar;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,7 +22,6 @@ import fr.formation.inti.service.UserServiceImpl;
 public class RegistrastionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private UserService userService;
-
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -34,8 +35,7 @@ public class RegistrastionServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		getServletContext().getRequestDispatcher("/WEB-INF/view/addUser.html").forward(request, response);
 	}
 
 	/**
@@ -49,17 +49,12 @@ public class RegistrastionServlet extends HttpServlet {
 		String password = request.getParameter("password");
 		String lastName = request.getParameter("lastName");
 		String firstName = request.getParameter("firstName");
-
-//		User u = new User();
-//		u.setDateCreation(new GregorianCalendar().getTime());
-//		u.setEmail(email);
-//		u.setFirstName(firstName);
-//		u.setLastName(lastName);
-//		u.setPassword(password);
-//		u.setRoleName(roleName);
+		
 		User u = new User(roleName, email, password, firstName, lastName, new GregorianCalendar().getTime());
 		userService.save(u);
 		response.sendRedirect("/TPweb/login.jsp");
+
+	
 
 	}
 

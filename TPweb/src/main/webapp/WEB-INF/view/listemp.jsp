@@ -6,19 +6,22 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Liste des employees</title>
+
 <link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-	crossorigin="anonymous">
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+	rel="stylesheet">
 <script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-	crossorigin="anonymous"></script>
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+<script
+	src="https://unpkg.com/bootstrap-table@1.21.2/dist/bootstrap-table.min.js"></script>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+<link rel="stylesheet"
+	href="https://unpkg.com/bootstrap-table@1.21.2/dist/bootstrap-table.min.css">
+
 </head>
-<%@ include file="std/navbar.jsp"%>
+<%@ include file="/../std/navbar.jsp"%>
 <body>
 	<!-- Background image -->
 	<div class="p-5 bg-image"
@@ -29,16 +32,18 @@
 			<div class="card-body py-5 px-md-5">
 
 				<div class="row d-flex justify-content-center">
-					<div class="col" align="center">
+					<div class="col">
 						<h2 class="fw-bold mb-2">Liste employee</h2>
 						<div align="center">
 							<a class="btn btn-primary m-4" href="/TPweb/list" role="button">Actualiser
-								la liste</a> <a class="btn btn-primary m-4" href="/TPweb/addemp.jsp"
+								la liste</a> <a class="btn btn-primary m-4" href="/TPweb/registreemp"
 								role="button">Enregistrer un employee</a>
 						</div>
-						<table class="table table-striped table-hover">
+						<table class="table table-striped table-hover"
+							data-page-list="[10, 25, 50, 100, all]" data-pagination="true"
+							data-toggle="table" data-search="true">
 							<thead>
-								<tr align="center">
+								<tr style="text-align: center">
 									<th>ID</th>
 									<th>firstName</th>
 									<th>lastName</th>
@@ -49,13 +54,13 @@
 							</thead>
 							<tbody>
 								<c:forEach items="${employees}" var="emp">
-									<tr align="center">
+									<tr>
 										<td>${emp.empId }</td>
 										<td>${emp.firstName }</td>
 										<td>${emp.lastName }</td>
 										<td>${emp.title }</td>
 										<td>${emp.startDate}</td>
-										<td><a
+										<td style="text-align: center"><a
 											href="update?id=<c:out value="${emp.empId}"></c:out>"
 											name="id" id="id" class="edit" data-toggle="modal"><i
 												class="bi bi-pencil-square"></i></a> <a
@@ -74,5 +79,9 @@
 			</div>
 		</div>
 	</div>
+	
+
+
+
 </body>
 </html>

@@ -25,13 +25,13 @@ import fr.formation.inti.service.UserServiceImpl;
 @WebServlet("/registreemp")
 public class RegistrastionEmpServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private EmployeeService empService ;
+	private EmployeeService empService;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public RegistrastionEmpServlet() {
-    	empService = new EmployeeServiceImpl();
+		empService = new EmployeeServiceImpl();
 	}
 
 	/**
@@ -40,8 +40,7 @@ public class RegistrastionEmpServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		getServletContext().getRequestDispatcher("/WEB-INF/view/addemp.jsp").forward(request, response);
 	}
 
 	/**
@@ -54,19 +53,18 @@ public class RegistrastionEmpServlet extends HttpServlet {
 		String lastName = request.getParameter("lastName");
 		String firstName = request.getParameter("firstName");
 		String startdate = request.getParameter("startdate");
-		
+
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date startdate_conv;
-		
+
 		try {
-			startdate_conv = simpleDateFormat.parse(startdate);    //convertion du string en date
+			startdate_conv = simpleDateFormat.parse(startdate); // convertion du string en date
 			Employee e = new Employee(firstName, lastName, startdate_conv, title);
 			empService.save(e);
 			response.sendRedirect("/TPweb/list");
-		} catch (ParseException e1) {		
+		} catch (ParseException e1) {
 			e1.printStackTrace();
 		}
-		
 
 //		Employee e = new Employee();
 //		e.setFirstName(firstName);

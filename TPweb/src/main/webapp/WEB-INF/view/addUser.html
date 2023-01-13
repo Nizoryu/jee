@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>new user</title>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+</head>
+<body>
+
+
+	<form action="registre" method="post">
+
+
+		<!-- Section: Design Block -->
+		<section class="text-center">
+			<!-- Background image -->
+			<div class="p-5 bg-image"
+				style="background-image: url('https://mdbootstrap.com/img/new/textures/full/171.jpg'); height: 300px;"></div>
+			<!-- Background image -->
+			<div class="container">
+
+				<div class="card mx-4 mx-md-5 shadow-5-strong"
+					style="margin-top: -100px; background: hsla(0, 0%, 100%, 0.8); backdrop-filter: blur(30px);">
+					<div class="card-body py-5 px-md-5">
+
+						<div class="row d-flex justify-content-center">
+							<div class="col-lg-8">
+								<h2 class="fw-bold mb-5">Enregistrement d'un utilisateur</h2>
+								<form>
+									<!-- 2 column grid layout with text inputs for the first and last names -->
+									<div class="row row-cols-2">
+
+										<div class="col mb-2">
+											<div class="form-outline">
+												<input type="text" name="firstName" id="form3Example1"
+													class="form-control" placeholder="Prénom" /> <label
+													class="form-label" for="form3Example1"></label>
+											</div>
+										</div>
+										<div class="col mb-2">
+											<div class="form-outline">
+												<input type="text" name="lastName" id="form3Example2"
+													class="form-control" placeholder="Nom de famille" /> <label
+													class="form-label" for="form3Example2"></label>
+											</div>
+										</div>
+									</div>
+
+
+									<!-- Email input -->
+									<div class="form-outline mb-2">
+										<input type="email" name="email" id="form3Example3"
+											class="form-control" placeholder="Email" /> <label
+											class="form-label" for="form3Example3"> </label>
+									</div>
+
+									<!-- Password input -->
+									<div class="form-outline mb-2">
+										<input type="password" name="password" id="form3Example4"
+											class="form-control" placeholder="Password" /> <label
+											class="form-label" for="form3Example4"></label>
+									</div>
+
+
+
+
+									<div class="row">
+										<div class="col-4">
+											<!-- User/Admin input -->
+											<select class="form-select mb-2" name="roleName"
+												id="mySelect" onChange="check(this)">
+												<option selected value="USER">USER</option>
+												<option value="ADMIN">ADMIN</option>
+											</select>
+
+											<div onChange="check(this)" id="ADMIN-div"
+												style="display: none;">
+												<label> <input autofocus="autofocus" placeholder="ADMIN_key"
+													name="admin_key" id="keyinput" class="form-outline mb-2"></input>
+												</label>
+												<button id="button1" disabled="disabled" type="submit"
+												class="btn btn-success btn-block my-1">Enregistrer (admin)</button>
+
+											</div>
+										</div>
+
+										<div class="col-4">
+											<!-- Submit button -->
+											<button id="button" type="submit"
+												class="btn btn-primary btn-block mb-4">Enregistrer</button>
+												
+										</div>
+									</div>
+
+
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</form>
+
+</body>
+<script>
+	// Put this script in header or above select element
+	function check(elem) {
+
+		var inputVal = $("#keyinput").val();
+
+		if (elem.value == 'ADMIN') {
+			document.getElementById("ADMIN-div").style.display = 'block';
+			document.getElementById("button").disabled = true;
+
+
+		} else {
+			document.getElementById("ADMIN-div").style.display = 'none';
+			document.getElementById("button").disabled = false;
+		}
+	}
+	function validateInput() {
+		var inputVal = $("#keyinput").val();
+		if (inputVal == 'yohanlefou') {
+			$("#button1").removeAttr("disabled");
+		} else {
+			 $("#button1").attr("disabled", "disabled");
+		}
+	}  
+	$(document).ready(function() {
+		$("#keyinput").keyup(validateInput);
+	});
+</script>
+
+</html>

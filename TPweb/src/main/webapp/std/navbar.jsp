@@ -12,7 +12,7 @@
 		style="background: hsla(0, 0%, 57%, 0.404)">
 		<div class="container-fluid ">
 			<div class="fw-bold">
-				<p>Bonjour ${user.firstName} (${user.roleName})</p>
+				<p>(${user.roleName})</p>
 			</div>
 
 			<c:choose>

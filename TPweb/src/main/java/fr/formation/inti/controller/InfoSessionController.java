@@ -36,11 +36,8 @@ public class InfoSessionController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
 		if(session != null) {
-			String email = (String) session.getAttribute("email");
-			String password = (String) session.getAttribute("password");
 			
-			response.sendRedirect(request.getContextPath()+"/main.jsp");
-			session.setMaxInactiveInterval(1800);
+			getServletContext().getRequestDispatcher("/WEB-INF/view/main.jsp").forward(request, response);
 		}else {
 			response.sendRedirect(request.getContextPath()+"/login.jsp");
 		}

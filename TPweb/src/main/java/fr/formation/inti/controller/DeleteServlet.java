@@ -49,7 +49,7 @@ public class DeleteServlet extends HttpServlet {
 		String id = request.getParameter("id");
 		Integer idEmp = Integer.parseInt(id);
 		empService.deleteById(idEmp);
-		request.getServletContext().getRequestDispatcher("/listemp.jsp").forward(request, response);
+		request.getServletContext().getRequestDispatcher("/list").forward(request, response);
 	}
 
 }

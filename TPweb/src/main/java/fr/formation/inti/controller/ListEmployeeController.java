@@ -34,8 +34,8 @@ public class ListEmployeeController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Employee> list = empService.findAll();
 		request.setAttribute("employees", list);
+		getServletContext().getRequestDispatcher("/WEB-INF/view/listemp.jsp").forward(request, response);
 		
-		getServletContext().getRequestDispatcher("/listemp.jsp").forward(request, response);
 		
 		
 	}
