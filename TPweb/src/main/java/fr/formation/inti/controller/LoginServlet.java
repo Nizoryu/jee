@@ -36,7 +36,12 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
+		HttpSession session = request.getSession(false);
+		if (session != null && session.getAttribute("user") !=null) {
+			request.getServletContext().getRequestDispatcher("/session").forward(request, response);
+		}else {	
+			request.getServletContext().getRequestDispatcher("/WEB-INF/view/login.jsp").forward(request, response);
+		}
 	}
 
 	/**
@@ -57,8 +62,8 @@ public class LoginServlet extends HttpServlet {
 			session.setMaxInactiveInterval(3600); // 1 heure
 			request.getServletContext().getRequestDispatcher("/session").forward(request, response);
 		}else {
-			RequestDispatcher rd = request.getRequestDispatcher("/login.jsp");
-			out.println("<font color=red>email ou mot de passe incorrect !.</font>");
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/login.jsp");
+			out.print("<div class=bg-danger><div class=text-center> <font class=fw-bold> email ou mot de passe incorrect !</font></div></div>");
 			rd.include(request, response);
 		} 
 

@@ -22,7 +22,7 @@
 
 </head>
 <%@ include file="/../std/navbar.jsp"%>
-<body>
+<body class="">
 	<!-- Background image -->
 	<div class="p-5 bg-image"
 		style="background-image: url('https://mdbootstrap.com/img/new/textures/full/171.jpg'); height: 300px;"></div>
@@ -33,12 +33,12 @@
 
 				<div class="row d-flex justify-content-center">
 					<div class="col">
-						<h2 class="fw-bold mb-2">Liste employee</h2>
+						<h2 class="fw-bold mb-2" align="center" >Management de la liste: Employee</h2>
 						<div align="center">
-							<a class="btn btn-primary m-4" href="/TPweb/list" role="button">Actualiser
-								la liste</a> <a class="btn btn-primary m-4"
-								href="/TPweb/registreemp" role="button">Enregistrer un
-								employee</a>
+							<a class="btn btn-primary bg-gradient mt-4" href="/TPweb/list" role="button"><i class="bi bi-arrow-clockwise"></i>
+							</a> 
+							<a class="btn btn-primary bg-gradient mt-4"
+								href="/TPweb/registreemp" role="button">Ajouter un employé</a>
 						</div>
 						<table class="table table-striped table-hover"
 							data-page-list="[10, 25, 50, 100, all]" data-pagination="true"
@@ -50,13 +50,7 @@
 									<th>lastName</th>
 									<th>title</th>
 									<th>startDate</th>
-									<c:choose>
-										<c:when test="${user.roleName == 'ADMIN'}">
-											<th>Modification</th>
-										</c:when>
-										</c:choose>
-									
-
+									<th>Modification</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -67,21 +61,28 @@
 										<td>${emp.lastName }</td>
 										<td>${emp.title }</td>
 										<td>${emp.startDate}</td>
-										<c:choose>
-										<c:when test="${user.roleName == 'ADMIN'}">
+
 										<td style="text-align: center">
-												
+										<c:choose>
+												<c:when test="${user.roleName == 'ADMIN'}">   <!-- when implique  2 choix -->
 													<a href="update?id=<c:out value="${emp.empId}"></c:out>"
 														id="id" class="edit" data-toggle="modal"><i
-														class="bi bi-pencil-square"></i></a>
+														class="bi bi-pencil-square"style=" font-size: 1.1rem;"></i></a>
+														
 													<a href="delete?id=<c:out value="${emp.empId}"></c:out>"
 														class="delete" data-toggle="modal"><i
-														class="bi bi-x-square-fill"></i></a>
+														class="bi bi-x-square-fill" style="color: red; font-size: 1.1rem;"></i></a>
 													<input type="hidden" name="id" id="id">
-											</td>
 												</c:when>
-		
-											</c:choose>
+												<c:otherwise>
+												<a href="update?id=<c:out value="${emp.empId}"></c:out>"
+														id="id" class="edit" data-toggle="modal"><i
+														class="bi bi-pencil-square" style=" font-size: 1.1rem;"></i></a>
+													
+													<input type="hidden" name="id" id="id">
+												</c:otherwise>
+
+											</c:choose></td>
 
 									</tr>
 								</c:forEach>

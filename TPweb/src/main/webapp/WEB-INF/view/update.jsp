@@ -12,13 +12,13 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 </head>
 <%@ include file="/../std/navbar.jsp"%>
-<body>
+<body class="d-flex flex-column min-vh-100">
 
 	<form action="update" method="post">
 
-
+<!-- style="min-height: 94vh;display:flex; flex-direction:column; " --> 
 		<!-- Section: Design Block -->
-		<section class="text-center">
+		<section class="text-center " >
 			<!-- Background image -->
 			<div class="p-5 bg-image"
 				style="background-image: url('https://mdbootstrap.com/img/new/textures/full/171.jpg'); height: 300px;"></div>
@@ -84,5 +84,7 @@
 
 	</form>
 </body>
+<footer class=">
 <%@ include file="/../std/footer.html"%>
+</footer>
 </html>

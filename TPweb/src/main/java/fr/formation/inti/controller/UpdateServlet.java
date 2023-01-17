@@ -1,6 +1,7 @@
 package fr.formation.inti.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -36,8 +37,7 @@ public class UpdateServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		HttpSession session = request.getSession(false);
-		if (session != null && session.getAttribute("user") !=null) {			
-			
+		if (session != null && session.getAttribute("user") !=null) {						
 			String id = request.getParameter("id");
 			Integer idEmp = Integer.parseInt(id);
 			Employee emp = empService.findById(idEmp);
@@ -45,7 +45,7 @@ public class UpdateServlet extends HttpServlet {
 			request.getServletContext().getRequestDispatcher("/WEB-INF/view/update.jsp").forward(request, response);
 			
 		} 	else {	
-			request.getServletContext().getRequestDispatcher("/WEB-INF/views/pasbien.html").forward(request, response);
+			request.getServletContext().getRequestDispatcher("/WEB-INF/view/pasbien.jsp").forward(request, response);
 		}
 	}
 
@@ -53,6 +53,7 @@ public class UpdateServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		PrintWriter out = response.getWriter();
 		String title = request.getParameter("title");
 		String lastName = request.getParameter("lastName");
 		String firstName = request.getParameter("firstName");

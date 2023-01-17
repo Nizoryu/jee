@@ -36,11 +36,10 @@ public class InfoSessionController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
 		if(session != null) {
-			
-
 			request.getServletContext().getRequestDispatcher("/list").forward(request, response);
 		}else {
-			response.sendRedirect(request.getContextPath()+"/login.jsp");
+//			request.getServletContext().getRequestDispatcher("/WEB-INF/view/login.jsp");
+			request.getServletContext().getRequestDispatcher("/login").forward(request, response);
 		}
 	}
 

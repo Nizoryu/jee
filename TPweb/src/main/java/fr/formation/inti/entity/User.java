@@ -110,4 +110,10 @@ public class User implements java.io.Serializable {
 		this.dateCreation = dateCreation;
 	}
 
+	@Override
+	public String toString() {
+		return "User [idUser=" + idUser + ", roleName=" + roleName + ", email=" + email + ", password=" + password
+				+ ", firstName=" + firstName + ", lastName=" + lastName + ", dateCreation=" + dateCreation + "]";
+	}
+
 }

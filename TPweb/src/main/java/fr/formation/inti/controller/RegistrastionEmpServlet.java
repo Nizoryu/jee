@@ -47,7 +47,7 @@ public class RegistrastionEmpServlet extends HttpServlet {
 		if (session != null && session.getAttribute("user") !=null) {			
 			getServletContext().getRequestDispatcher("/WEB-INF/view/addemp.jsp").forward(request, response);
 		} 	else {	
-			request.getServletContext().getRequestDispatcher("/WEB-INF/views/pasbien.html").forward(request, response);
+			request.getServletContext().getRequestDispatcher("/WEB-INF/view/pasbien.jsp").forward(request, response);
 		}
 	}
 

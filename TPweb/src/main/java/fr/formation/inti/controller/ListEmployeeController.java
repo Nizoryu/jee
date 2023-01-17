@@ -34,23 +34,15 @@ public class ListEmployeeController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
-		if (session != null && session.getAttribute("user") !=null) {
-				
+		if (session != null && session.getAttribute("user") !=null) {		
 				List<Employee> list = empService.findAll();
 				request.setAttribute("employees", list);
-				getServletContext().getRequestDispatcher("/WEB-INF/view/listemp.jsp").forward(request, response);
-	
-		
+				getServletContext().getRequestDispatcher("/WEB-INF/view/listemp.jsp").forward(request, response);		
 		} 	else {	
-			request.getServletContext().getRequestDispatcher("/WEB-INF/views/pasbien.html").forward(request, response);
+			request.getServletContext().getRequestDispatcher("/WEB-INF/view/pasbien.jsp").forward(request, response);
 		}
 		}
 
-		
-		
-	//	List<Employee> list = empService.findAll();
-	//	request.setAttribute("employees", list);
-	//	getServletContext().getRequestDispatcher("/WEB-INF/view/listemp.jsp").forward(request, response);
 		
 
 

@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import fr.formation.inti.entity.Employee;
+import fr.formation.inti.entity.User;
 import fr.formation.inti.service.EmployeeService;
 import fr.formation.inti.service.EmployeeServiceImpl;
 
@@ -39,17 +40,17 @@ public class DeleteServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
-		if (session != null && session.getAttribute("user") !=null) {
-			
-
-			doPost(request, response);
-
-	
+		if (session != null ) {
+			User user = (User) session.getAttribute("user");
+			if(user !=null && user.getRoleName().equals("ADMIN"))
+				doPost(request, response);	
+			else {
+				//pas le droit de suppression
+				request.getServletContext().getRequestDispatcher("/WEB-INF/view/pasbien.jsp").forward(request, response);
+			}
 	} 	else {	
-		request.getServletContext().getRequestDispatcher("/WEB-INF/views/pasbien.html").forward(request, response);
+		request.getServletContext().getRequestDispatcher("/WEB-INF/view/pasbien.jsp").forward(request, response);
 	}
-		
-
 	}
 
 	/**

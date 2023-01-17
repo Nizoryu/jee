@@ -35,15 +35,13 @@ public class RegistrastionServlet extends HttpServlet {
 	 *      response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		
+			throws ServletException, IOException {	
 		HttpSession session = request.getSession(false);
 		if (session != null && session.getAttribute("user") !=null) {			
-			getServletContext().getRequestDispatcher("/WEB-INF/view/addUser.html").forward(request, response);
+			getServletContext().getRequestDispatcher("/logout").forward(request, response);
 		} 	else {	
-			request.getServletContext().getRequestDispatcher("/WEB-INF/views/pasbien.html").forward(request, response);
+			getServletContext().getRequestDispatcher("/WEB-INF/view/addUser.html").forward(request, response);
 		}
-		getServletContext().getRequestDispatcher("/WEB-INF/view/addUser.html").forward(request, response);
 	}
 
 	/**
@@ -58,25 +56,27 @@ public class RegistrastionServlet extends HttpServlet {
 		String password = request.getParameter("password");
 		String lastName = request.getParameter("lastName");
 		String firstName = request.getParameter("firstName");
+		String adminkey = request.getParameter("admin_key");
 		
 		PrintWriter out = response.getWriter();
 		User user = userService.findByUniqueEmail(email);
 		if(user != null) {  //si la méthode trouve un user avec le même email inscrit
-			RequestDispatcher rd = request.getRequestDispatcher("/registre"); 
-			out.println("<font color=red>email déjà utilisé </font>");
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/addUser.html");
+			out.print("<div class=bg-danger><div class=text-center> <font class=fw-bold> email déjà utilisé !</font></div></div>");
+			rd.include(request, response);
 			
-		}else { //si la méthode ne trouve pas d'email dans la bdd
-			User u = new User(roleName, email, password, firstName, lastName, new GregorianCalendar().getTime());
+		}else if(adminkey != "yohanlefou" && roleName.equals("ADMIN")) {
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/addUser.html");
+			out.print("<div class=bg-danger><div class=text-center> <font class=fw-bold> mauvaise clé admin</font></div></div>");
+			rd.include(request, response);			
+		}else {
+		
+		User u = new User(roleName, email, password, firstName, lastName, new GregorianCalendar().getTime());
 			userService.save(u);
-			response.sendRedirect("/TPweb/login.jsp");
+			request.getServletContext().getRequestDispatcher("/login").forward(request, response);
 			
 		}
 		
-		
-//		User u = new User(roleName, email, password, firstName, lastName, new GregorianCalendar().getTime());
-//		userService.save(u);
-//		response.sendRedirect("/TPweb/login.jsp");
-
 	
 
 	}
